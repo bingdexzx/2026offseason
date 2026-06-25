@@ -160,8 +160,20 @@ public class RobotContainer {
 
     controller
         .y()
-        .onTrue(Commands.runOnce(() -> shooter.setShootVelocity(3)))
-        .onFalse(Commands.runOnce(() -> shooter.setShootVelocity(0)));
+        .onTrue(
+            Commands.runOnce(
+                () -> {
+                  shooter.setShootVelocity(30);
+                  shooter.setFeeder_1Vol(0);
+                  shooter.setFeeder_2Velocity(5);
+                }))
+        .onFalse(
+            Commands.runOnce(
+                () -> {
+                  shooter.setShootVelocity(0);
+                  shooter.setFeeder_1Vol(0);
+                  shooter.setFeeder_2Velocity(0);
+                }));
   }
 
   /**

@@ -9,7 +9,7 @@ import org.littletonrobotics.junction.Logger;
 public class Shooter extends SubsystemBase {
   private final ShooterIO io;
   private final ShooterIOInputsAutoLogged inputs = new ShooterIOInputsAutoLogged();
-  private boolean isAtGoalSpeed = true;
+  private boolean isAtGoalSpeed = false;
   private boolean isAtGoalPos = true;
   private final Debouncer speedDebouncer = new Debouncer(0.2, DebounceType.kRising);
   private final Debouncer posDebouncer = new Debouncer(0.2, DebounceType.kRising);
@@ -25,8 +25,8 @@ public class Shooter extends SubsystemBase {
     io.updateInputs(inputs);
     Logger.processInputs("shooter", inputs);
     // 更新飞轮是否达到设定速度
-    double goalSpeed = goalSpeedSupplier.getAsDouble();
-    isAtGoalSpeed = speedDebouncer.calculate(Math.abs(goalSpeed - inputs.shooterVelocity) < 0.2);
+    double goalSpeed = inputs.shotVelocitySetPoint;
+    isAtGoalSpeed = speedDebouncer.calculate(Math.abs(goalSpeed - inputs.shooterVelocity) < 1);
     Logger.recordOutput("Shooter/atGoalSpeed", isAtGoalSpeed);
     // 更新是否达到设定位置
     double goalPos = goalPosSupplier.getAsDouble();
@@ -34,11 +34,21 @@ public class Shooter extends SubsystemBase {
     Logger.recordOutput("Shooter/atGoalPos", isAtGoalPos);
   }
 
+  public void shootWithPos(double pos) {}
+
   public void setShootVelocity(double velocity) {
     io.setShooterVelocity(velocity);
   }
 
   public void setPos(double pos) {
     io.setShooterPos(pos);
+  }
+
+  public void setFeeder_1Vol(double vol) {
+    io.setFeeder_1Vol(vol);
+  }
+
+  public void setFeeder_2Velocity(double velocity) {
+    io.setFeeder_2Velocity(velocity);
   }
 }
