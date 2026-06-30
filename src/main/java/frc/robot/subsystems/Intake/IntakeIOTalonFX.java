@@ -7,6 +7,8 @@ import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
+import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 
 public class IntakeIOTalonFX implements IntakeIO {
@@ -25,27 +27,31 @@ public class IntakeIOTalonFX implements IntakeIO {
   public IntakeIOTalonFX() {
     TalonFXConfiguration turnConfig = new TalonFXConfiguration();
     TalonFXConfiguration intakeConfig = new TalonFXConfiguration();
-    turnConfig.Slot0.kG = 0.0;
-    turnConfig.Slot0.kS = 0.3;
-    turnConfig.Slot0.kA = 0.3;
+    turnConfig.Slot0.kG = 1.16;
+    turnConfig.Slot0.kS = 0.0;
+    turnConfig.Slot0.kA = 0.0;
     turnConfig.Slot0.kV = 0.0;
-    turnConfig.Slot0.kP = 0.0;
+    turnConfig.Slot0.kP = 1;
     turnConfig.Slot0.kI = 0.0;
     turnConfig.Slot0.kD = 0.0;
     turnConfig.MotionMagic.MotionMagicCruiseVelocity = 2;
     turnConfig.MotionMagic.MotionMagicAcceleration = 3;
     turnConfig.Voltage.PeakForwardVoltage = 12.0;
     turnConfig.Voltage.PeakReverseVoltage = -12.0;
-    turnConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+    turnConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+    turnConfig.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.RotorSensor;
+    turnConfig.Slot0.GravityType = GravityTypeValue.Arm_Cosine;
+    turnConfig.Feedback.RotorToSensorRatio = 1; // 电机转子1转，传感器1转。
+    turnConfig.Feedback.SensorToMechanismRatio = 5.555; // 电机转子50/9转，arm1转。
     turnConfig.SoftwareLimitSwitch.ForwardSoftLimitEnable = false;
     turnConfig.SoftwareLimitSwitch.ReverseSoftLimitEnable = false;
     turnConfig.HardwareLimitSwitch.ForwardLimitAutosetPositionEnable = false;
     turnConfig.HardwareLimitSwitch.ReverseLimitAutosetPositionEnable = false;
     intakeConfig.Slot0.kV = 0.0;
     intakeConfig.Slot0.kS = 0.0;
-    intakeConfig.Slot0.kP = 0.1;
+    intakeConfig.Slot0.kP = 0.0;
     intakeConfig.Slot0.kI = 0.0;
-    intakeConfig.Slot0.kD = 0.1;
+    intakeConfig.Slot0.kD = 0.0;
     intakeConfig.Voltage.PeakForwardVoltage = 12.0;
     intakeConfig.Voltage.PeakReverseVoltage = -12.0;
     intakeConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -82,5 +88,10 @@ public class IntakeIOTalonFX implements IntakeIO {
   @Override
   public void resetPos(double position) {
     turnMotor.setPosition(position);
+  }
+
+  @Override 
+  public void hold(double vol){
+    turnMotor.setControl(voltageRequest.withOutput(vol));
   }
 }

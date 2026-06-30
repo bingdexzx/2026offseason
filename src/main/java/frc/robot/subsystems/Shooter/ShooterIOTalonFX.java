@@ -12,7 +12,7 @@ import com.ctre.phoenix6.signals.InvertedValue;
 public class ShooterIOTalonFX implements ShooterIO {
   private final TalonFX shotMotor;
   private final TalonFX feedMotor_2;
-  // private final TalonFX feedMotor_1;
+  private final TalonFX feedMotor_1;
   private final TalonFX turnMotor;
 
   // Voltage control requests
@@ -30,8 +30,8 @@ public class ShooterIOTalonFX implements ShooterIO {
     TalonFXConfiguration feedMotorConfig_2 = new TalonFXConfiguration();
     TalonFXConfiguration turnMotorConfig = new TalonFXConfiguration();
     //
-    shotMotorConfig.MotionMagic.MotionMagicAcceleration = 50;
-    shotMotorConfig.MotionMagic.MotionMagicCruiseVelocity = 50;
+    shotMotorConfig.MotionMagic.MotionMagicAcceleration = 55;
+    shotMotorConfig.MotionMagic.MotionMagicCruiseVelocity = 55;
     shotMotorConfig.SoftwareLimitSwitch.ForwardSoftLimitEnable = false;
     shotMotorConfig.SoftwareLimitSwitch.ReverseSoftLimitEnable = false;
     shotMotorConfig.Voltage.PeakForwardVoltage = 12.0;
@@ -39,7 +39,7 @@ public class ShooterIOTalonFX implements ShooterIO {
     shotMotorConfig.Slot0.kS = 0.22;
     shotMotorConfig.Slot0.kV = 0.115;
     shotMotorConfig.Slot0.kA = 0.0;
-    shotMotorConfig.Slot0.kP = 0.13;
+    shotMotorConfig.Slot0.kP = 0.15;
     shotMotorConfig.Slot0.kD = 0.0;
     shotMotorConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
     //
@@ -54,7 +54,7 @@ public class ShooterIOTalonFX implements ShooterIO {
     turnMotorConfig.Voltage.PeakReverseVoltage = -12.0;
     turnMotorConfig.Slot0.kS = 0.1;
     turnMotorConfig.Slot0.kV = 0.1;
-    turnMotorConfig.Slot0.kG = 0.223;
+    turnMotorConfig.Slot0.kG = 0.225;
     turnMotorConfig.Slot0.kA = 0.0;
     turnMotorConfig.Slot0.kP = 1.8;
     turnMotorConfig.Slot0.kD = 0.2;
@@ -80,12 +80,12 @@ public class ShooterIOTalonFX implements ShooterIO {
 
     this.shotMotor = new TalonFX(15);
     this.feedMotor_2 = new TalonFX(16); // shooter上的滚筒
-    // this.feedMotor_1 = new TalonFX(17); // feeder_1 底盘上的多组皮带
+    this.feedMotor_1 = new TalonFX(17); // feeder_1 底盘上的多组皮带
     this.turnMotor = new TalonFX(18);
 
     turnMotor.getConfigurator().apply(turnMotorConfig);
     shotMotor.getConfigurator().apply(shotMotorConfig);
-    // feedMotor_1.getConfigurator().apply(feedMotorConfig_1);
+    feedMotor_1.getConfigurator().apply(feedMotorConfig_1);
     feedMotor_2.getConfigurator().apply(feedMotorConfig_2);
   }
 
@@ -112,7 +112,7 @@ public class ShooterIOTalonFX implements ShooterIO {
 
   @Override
   public void setFeeder_1Vol(double vol) {
-    // feedMotor_1.setControl(voltageRequest.withOutput(vol));
+    feedMotor_1.setControl(voltageRequest.withOutput(vol));
   }
 
   @Override

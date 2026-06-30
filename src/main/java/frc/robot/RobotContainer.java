@@ -132,17 +132,17 @@ public class RobotContainer {
             drive,
             () -> -controller.getLeftY(),
             () -> -controller.getLeftX(),
-            () -> -controller.getRightX()));
+            () -> +controller.getLeftTriggerAxis() - controller.getRightTriggerAxis()));
 
     // Lock to 0° when A button is held
-    controller
-        .a()
-        .whileTrue(
-            DriveCommands.joystickDriveAtAngle(
-                drive,
-                () -> -controller.getLeftY(),
-                () -> -controller.getLeftX(),
-                () -> Rotation2d.kZero));
+    // controller
+    // .a()
+    // .whileTrue(
+    // DriveCommands.joystickDriveAtAngle(
+    // drive,
+    // () -> -controller.getLeftY(),
+    // () -> -controller.getLeftX(),
+    // () -> Rotation2d.kZero));
 
     // Switch to X pattern when X button is pressed
     controller.x().onTrue(Commands.runOnce(drive::stopWithX, drive));
@@ -163,16 +163,31 @@ public class RobotContainer {
         .onTrue(
             Commands.runOnce(
                 () -> {
-                  shooter.setShootVelocity(30);
-                  shooter.setFeeder_1Vol(0);
-                  shooter.setFeeder_2Velocity(5);
+                  intake.intake(7);
                 }))
         .onFalse(
             Commands.runOnce(
                 () -> {
-                  shooter.setShootVelocity(0);
+                  intake.intake(0);
+                }));
+
+    controller
+        .a()
+        .onTrue(
+            Commands.runOnce(
+                () -> {
+                  shooter.setFeeder_1Vol(6);
+                  shooter.setPos(0.4); // 0.9 max
+                  shooter.setFeeder_2Velocity(30);
+                  shooter.setShootVelocity(60);
+                }))
+        .onFalse(
+            Commands.runOnce(
+                () -> {
                   shooter.setFeeder_1Vol(0);
+                  shooter.setPos(0);
                   shooter.setFeeder_2Velocity(0);
+                  shooter.setShootVelocity(0);
                 }));
   }
 
