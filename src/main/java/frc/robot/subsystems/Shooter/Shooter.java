@@ -9,12 +9,13 @@ import org.littletonrobotics.junction.Logger;
 public class Shooter extends SubsystemBase {
   private final ShooterIO io;
   private final ShooterIOInputsAutoLogged inputs = new ShooterIOInputsAutoLogged();
-  private boolean isAtGoalSpeed = false;
-  private boolean isAtGoalPos = true;
-  private final Debouncer speedDebouncer = new Debouncer(0.2, DebounceType.kRising);
-  private final Debouncer posDebouncer = new Debouncer(0.2, DebounceType.kRising);
-  private DoubleSupplier goalSpeedSupplier = () -> 0.0;
-  private DoubleSupplier goalPosSupplier = () -> 0.0;
+  public boolean isAtGoalSpeed = false;
+  public boolean isAtGoalPos = true;
+  public boolean readyFeed = false;
+  public boolean startFeeder1 = false;
+  private final Debouncer speedDebouncer = new Debouncer(0.2, DebounceType.kBoth);
+  private final Debouncer posDebouncer = new Debouncer(0.2, DebounceType.kBoth);//this will fall when shoot out.use Both!
+  private final Debouncer feedDebouncer = new Debouncer(0.2,DebounceType.kFalling);//avoid readyFeed falling when shoot cus bounce time is about 0.2~0.4;
 
   public Shooter(ShooterIO io) {
     this.io = io;
@@ -33,23 +34,40 @@ public class Shooter extends SubsystemBase {
     double goalPos = inputs.positionSetPoint;
     isAtGoalPos = posDebouncer.calculate(Math.abs(goalPos - inputs.shooterPosition) < 0.3);
     Logger.recordOutput("Shooter/atGoalPos", isAtGoalPos);
+    //wait speed and pos to feed
+    readyFeed = feedDebouncer.calculate(isAtGoalPos == true && isAtGoalSpeed == true);
+    if (readyFeed == true && startFeeder1 == true) {
+       setFeeder_1Vol(6);
+    }
   }
 
-  public void shootWithPos(double pos) {}
+  public void shoot(double Pos, int Feeder_Vel, int Shoot_Vel) {
+    setPos(Pos); // 0.9 max
+    setFeeder_2Velocity(Feeder_Vel);
+    setShootVelocity(Shoot_Vel);
+    startFeeder1 = true;
+  }
 
-  public void setShootVelocity(double velocity) {
+  public void stop() {
+    setPos(0); 
+    setFeeder_2Velocity(0);
+    setShootVelocity(0);
+    startFeeder1 = false;
+  }
+
+  private void setShootVelocity(double velocity) {
     io.setShooterVelocity(velocity);
   }
 
-  public void setPos(double pos) {
+  private void setPos(double pos) {
     io.setShooterPos(pos);
   }
 
-  public void setFeeder_1Vol(double vol) {
+  private void setFeeder_1Vol(double vol) {
     io.setFeeder_1Vol(vol);
   }
 
-  public void setFeeder_2Velocity(double velocity) {
+  private void setFeeder_2Velocity(double velocity) {
     io.setFeeder_2Velocity(velocity);
   }
 }

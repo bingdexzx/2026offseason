@@ -30,6 +30,9 @@ import frc.robot.subsystems.drive.GyroIOPigeon2;
 import frc.robot.subsystems.drive.ModuleIO;
 import frc.robot.subsystems.drive.ModuleIOSim;
 import frc.robot.subsystems.drive.ModuleIOTalonFX;
+
+import java.lang.ModuleLayer.Controller;
+
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
@@ -176,18 +179,12 @@ public class RobotContainer {
         .onTrue(
             Commands.runOnce(
                 () -> {
-                  shooter.setFeeder_1Vol(6);
-                  shooter.setPos(0.4); // 0.9 max
-                  shooter.setFeeder_2Velocity(30);
-                  shooter.setShootVelocity(60);
+                  shooter.shoot(0, 0, 0);
                 }))
         .onFalse(
             Commands.runOnce(
                 () -> {
-                  shooter.setFeeder_1Vol(0);
-                  shooter.setPos(0);
-                  shooter.setFeeder_2Velocity(0);
-                  shooter.setShootVelocity(0);
+                  shooter.stop();
                 }));
   }
 
