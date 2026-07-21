@@ -64,16 +64,16 @@
     },
     {
       "anchor": {
-        "x": 7.818,
-        "y": 3.257
+        "x": 7.805,
+        "y": 3.321
       },
       "prevControl": {
-        "x": 7.632483721816174,
-        "y": 2.740294367624253
+        "x": 7.619483721816174,
+        "y": 2.804294367624253
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "蓝右intake末位置"
     }
   ],
   "rotationTargets": [
@@ -102,7 +102,7 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 1.0,
+    "velocity": 0.8,
     "rotation": -90.0
   },
   "reversed": false,

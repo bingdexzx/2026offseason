@@ -88,7 +88,7 @@ public class DriveCommands {
                   linearVelocity.getY()
                       * drive.getMaxLinearSpeedMetersPerSec()
                       * maxSpeedSupplier.getAsDouble(),
-                  omega * drive.getMaxAngularSpeedRadPerSec() * 0.2);
+                  omega * drive.getMaxAngularSpeedRadPerSec() * 0.3);
           boolean isFlipped =
               DriverStation.getAlliance().isPresent()
                   && DriverStation.getAlliance().get() == Alliance.Red;
@@ -111,7 +111,8 @@ public class DriveCommands {
       Drive drive,
       DoubleSupplier xSupplier,
       DoubleSupplier ySupplier,
-      Supplier<Rotation2d> rotationSupplier) {
+      Supplier<Rotation2d> rotationSupplier,
+      DoubleSupplier maxSpeedSupplier) {
 
     // Create PID controller
     ProfiledPIDController angleController =
@@ -137,9 +138,13 @@ public class DriveCommands {
               // Convert to field relative speeds & send command
               ChassisSpeeds speeds =
                   new ChassisSpeeds(
-                      linearVelocity.getX() * drive.getMaxLinearSpeedMetersPerSec(),
-                      linearVelocity.getY() * drive.getMaxLinearSpeedMetersPerSec(),
-                      omega);
+                      linearVelocity.getX()
+                          * drive.getMaxLinearSpeedMetersPerSec()
+                          * maxSpeedSupplier.getAsDouble(),
+                      linearVelocity.getY()
+                          * drive.getMaxLinearSpeedMetersPerSec()
+                          * maxSpeedSupplier.getAsDouble(),
+                      omega * drive.getMaxAngularSpeedRadPerSec() * 0.8);
               boolean isFlipped =
                   DriverStation.getAlliance().isPresent()
                       && DriverStation.getAlliance().get() == Alliance.Red;

@@ -17,11 +17,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
-import frc.robot.Autos.Left_A;
-import frc.robot.Autos.Right_A;
-import frc.robot.Autos.Middle_A;
+import frc.robot.Autos.AutoFactory;
 import frc.robot.commands.DriveCommands;
 import frc.robot.commands.DriveToShootPoseCommand;
+import frc.robot.commands.FaceCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.Intake.IntakeIO;
@@ -39,9 +38,6 @@ import frc.robot.subsystems.vision.Vision;
 import frc.robot.subsystems.vision.VisionConstants;
 import frc.robot.subsystems.vision.VisionIO;
 import frc.robot.subsystems.vision.VisionIOPhotonVision;
-
-import javax.sound.midi.spi.MidiFileReader;
-
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
@@ -150,16 +146,18 @@ public class RobotContainer {
     autoChooser.addOption("line", new PathPlannerAuto("line"));
     autoChooser.addOption(
         "BuleLeft1",
-        Left_A.runBuleA1CommandInAuto(
+        AutoFactory.runSidePathInAuto(
             "BlueLeft_A1", "BlueLeft_A2", "BlueLeft_A3", intake, shooter));
     autoChooser.addOption(
-        "BulerRight1",
-        Right_A.runBuleA1CommandInAuto(
+        "BuleLeft2",
+        AutoFactory.runSidePathInAuto(
+            "BlueLeft_A1", "BlueLeft_A2", "BlueLeft_B3", "BlueLeft_B2", intake, shooter));
+    autoChooser.addOption(
+        "BuleRight1",
+        AutoFactory.runSidePathInAuto(
             "BlueRight_A1", "BlueRight_A2", "BlueRight_A3", intake, shooter));
     autoChooser.addOption(
-        "BulerMiddle1",
-        Middle_A.runBuleA1CommandInAuto(
-            "BlueMiddle_A1",intake, shooter));
+        "BuleMiddle1", AutoFactory.runMiddlePathInAuto("BlueMiddle_A1", intake, shooter));
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -177,10 +175,7 @@ public class RobotContainer {
             drive,
             () -> -controller.getLeftY(),
             () -> -controller.getLeftX(),
-            () ->
-                +controller.getLeftTriggerAxis()
-                    - controller.getRightTriggerAxis()
-                    - controller.getRightX(),
+            () -> +controller.getLeftTriggerAxis() - controller.getRightTriggerAxis(),
             () -> 0.8));
 
     // Lock to 0° when A button is held
@@ -203,7 +198,7 @@ public class RobotContainer {
             Commands.runOnce(
                     () ->
                         drive.setPose(
-                            new Pose2d(drive.getPose().getTranslation(), Rotation2d.kZero)),
+                            new Pose2d(drive.getPose().getTranslation(), Rotation2d.k180deg)),
                     drive)
                 .ignoringDisable(true));
 
@@ -228,7 +223,7 @@ public class RobotContainer {
                 () -> 0.4));
 
     controller
-        .a()
+        .b()
         .onTrue(
             Commands.runOnce(
                 () -> {
@@ -243,11 +238,11 @@ public class RobotContainer {
                 }));
 
     controller
-        .b()
+        .a()
         .onTrue(
             Commands.runOnce(
                 () -> {
-                  shooter.shoot(1.2, 60);
+                  shooter.shoot(1.0, 60);
                   intake.setPos(() -> 0.3);
                 }))
         .onFalse(
@@ -255,7 +250,9 @@ public class RobotContainer {
                 () -> {
                   shooter.stop();
                   intake.setPos(() -> 0.0);
-                }));
+                }))
+        .whileTrue(
+            new FaceCommand(drive, () -> -controller.getLeftY(), () -> -controller.getLeftX()));
 
     controller.rightBumper().whileTrue(new DriveToShootPoseCommand(drive));
   }

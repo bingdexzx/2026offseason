@@ -3,70 +3,70 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.804871794871794,
-        "y": 4.758532763532765
+        "x": 5.946,
+        "y": 3.308
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.974237875324466,
-        "y": 4.514769964782114
-      },
-      "isLocked": false,
-      "linkedName": "蓝左intake末位置"
-    },
-    {
-      "anchor": {
-        "x": 5.6859544159544155,
-        "y": 7.3813390313390315
-      },
-      "prevControl": {
-        "x": 6.72946071882392,
-        "y": 7.094490519294939
-      },
-      "nextControl": {
-        "x": 5.376883680602476,
-        "y": 7.466299208683705
+        "x": 7.045680919986809,
+        "y": 1.880447593180214
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.373233618233618,
-        "y": 7.3813390313390315
+        "x": 5.666,
+        "y": 0.64
       },
       "prevControl": {
-        "x": 3.6843064225398967,
-        "y": 7.502072532791105
+        "x": 6.425685643239312,
+        "y": 0.6618568857816924
       },
       "nextControl": {
-        "x": 2.5465051884428447,
-        "y": 7.060469393438001
+        "x": 4.018681657817915,
+        "y": 0.5926050687260143
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.649700854700855,
-        "y": 5.533746438746439
+        "x": 3.461,
+        "y": 0.64
       },
       "prevControl": {
-        "x": 2.6758062736385226,
-        "y": 6.257923865883679
+        "x": 5.460875619599763,
+        "y": 0.6176951545519488
+      },
+      "nextControl": {
+        "x": 2.488060511064715,
+        "y": 0.6508513073104769
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.65,
+        "y": 2.546
+      },
+      "prevControl": {
+        "x": 2.5341504280045064,
+        "y": 2.293288946287541
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "蓝左Shoot末位置"
+      "linkedName": null
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.419917012448134,
+      "waypointRelativePos": 1.16,
       "rotationDegrees": 0.0
     },
     {
-      "waypointRelativePos": 1.5062240663900393,
+      "waypointRelativePos": 1.79,
       "rotationDegrees": 0.0
     }
   ],
@@ -82,14 +82,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.0,
-    "rotation": -36.20510303455668
+    "velocity": 0,
+    "rotation": 36.205
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": 90.0
+    "velocity": 0,
+    "rotation": -87.274
   },
   "useDefaultConstraints": true
 }
