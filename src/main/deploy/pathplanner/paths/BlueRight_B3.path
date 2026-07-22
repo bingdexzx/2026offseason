@@ -1,0 +1,115 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.65,
+        "y": 2.546
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.8745861913766775,
+        "y": 2.274955644510131
+      },
+      "isLocked": false,
+      "linkedName": "蓝右shooter末位置"
+    },
+    {
+      "anchor": {
+        "x": 3.611,
+        "y": 0.88
+      },
+      "prevControl": {
+        "x": 2.4865177247669914,
+        "y": 1.4616318532257284
+      },
+      "nextControl": {
+        "x": 3.9156583099564948,
+        "y": 0.7224172783124605
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.569,
+        "y": 0.769
+      },
+      "prevControl": {
+        "x": 4.766213040311,
+        "y": 0.44155214559674794
+      },
+      "nextControl": {
+        "x": 5.800484129091407,
+        "y": 0.8634197965407301
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.054,
+        "y": 1.662
+      },
+      "prevControl": {
+        "x": 6.080442409128273,
+        "y": 1.0996213028576802
+      },
+      "nextControl": {
+        "x": 6.03915843466335,
+        "y": 1.9776512758383178
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.946,
+        "y": 3.308
+      },
+      "prevControl": {
+        "x": 5.983656712336009,
+        "y": 2.657088353141501
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "station吸球末右"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.6,
+      "rotationDegrees": 180.0
+    },
+    {
+      "waypointRelativePos": 1.83,
+      "rotationDegrees": 180.0
+    },
+    {
+      "waypointRelativePos": 2.98,
+      "rotationDegrees": -85.82
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -87.27
+  },
+  "reversed": false,
+  "folder": null,
+  "idealStartingState": {
+    "velocity": 0.0,
+    "rotation": 36.21
+  },
+  "useDefaultConstraints": true
+}

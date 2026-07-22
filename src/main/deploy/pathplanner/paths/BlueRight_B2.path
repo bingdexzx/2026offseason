@@ -12,20 +12,20 @@
         "y": 1.880447593180214
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "station吸球末右"
     },
     {
       "anchor": {
         "x": 5.666,
-        "y": 0.64
+        "y": 0.7
       },
       "prevControl": {
         "x": 6.425685643239312,
-        "y": 0.6618568857816924
+        "y": 0.7218568857816924
       },
       "nextControl": {
         "x": 4.018681657817915,
-        "y": 0.5926050687260143
+        "y": 0.6526050687260142
       },
       "isLocked": false,
       "linkedName": null
@@ -33,15 +33,15 @@
     {
       "anchor": {
         "x": 3.461,
-        "y": 0.64
+        "y": 0.7
       },
       "prevControl": {
         "x": 5.460875619599763,
-        "y": 0.6176951545519488
+        "y": 0.6776951545519386
       },
       "nextControl": {
         "x": 2.488060511064715,
-        "y": 0.6508513073104769
+        "y": 0.7108513073105177
       },
       "isLocked": false,
       "linkedName": null
@@ -57,7 +57,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "蓝右shooter末位置"
     }
   ],
   "rotationTargets": [
@@ -83,13 +83,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 36.205
+    "rotation": 36.21
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -87.274
+    "rotation": -87.27
   },
   "useDefaultConstraints": true
 }
