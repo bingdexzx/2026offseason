@@ -23,12 +23,12 @@ public class DriveToShootPoseCommand extends Command {
   private Translation2d targetPoint = new Translation2d(); // 目标点坐标
   private final ProfiledPIDController thetaController =
       new ProfiledPIDController(
-          0.1,
+          0.23,
           0.0,
           0.0,
           new TrapezoidProfile.Constraints(Units.degreesToRadians(360.0), 5)); // TODO
   private final ProfiledPIDController driveController =
-      new ProfiledPIDController(0.1, 0.0, 0.0, new TrapezoidProfile.Constraints(5, 5));
+      new ProfiledPIDController(0.14, 0.0, 0.0, new TrapezoidProfile.Constraints(5, 5));
   private double thetaErrorAbs = 0.0;
   private double driveErrorAbs = 0.0;
   private Translation2d lastSetpointTranslation = new Translation2d();
@@ -110,7 +110,9 @@ public class DriveToShootPoseCommand extends Command {
     double currentDistance = currentPose.getTranslation().getDistance(driveGaolPoint);
 
     // use a small feedforward scaler if distance to target is small （0.10-0.15m？)
-    double ffScaler = MathUtil.clamp((currentDistance) / (0.1), 0.0, 1.0);
+    double ffScaler =
+        MathUtil.clamp(
+            (currentDistance) / (0.1), 0.0, 1.0); // bounce when near goal ， use carefully
     driveErrorAbs = currentDistance;
 
     // reset integral term which we don't need, the setpoint should not change because we pass in
@@ -120,7 +122,7 @@ public class DriveToShootPoseCommand extends Command {
         driveController.getSetpoint().velocity);
 
     double driveVelocityScalar =
-        driveController.getSetpoint().velocity * ffScaler
+        driveController.getSetpoint().velocity
             + driveController.calculate(
                 driveErrorAbs,
                 0.0); // this updates the current setpoint = the current distance to target

@@ -157,6 +157,10 @@ public class RobotContainer {
         AutoFactory.runSidePathInAuto(
             "BlueRight_A1", "BlueRight_A2", "BlueRight_A3", intake, shooter));
     autoChooser.addOption(
+        "BuleRight2",
+        AutoFactory.runSidePathInAuto(
+            "BlueRight_A1", "BlueRight_A2", "BlueRight_B3", "BlueRight_B2", intake, shooter));
+    autoChooser.addOption(
         "BuleMiddle1", AutoFactory.runMiddlePathInAuto("BlueMiddle_A1", intake, shooter));
     // Configure the button bindings
     configureButtonBindings();

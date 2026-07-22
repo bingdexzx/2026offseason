@@ -24,10 +24,10 @@ public class FaceCommand extends Command {
 
   private final ProfiledPIDController thetaController =
       new ProfiledPIDController(
-          0.1,
+          0.3,
           0.0,
           0.0,
-          new TrapezoidProfile.Constraints(Units.degreesToRadians(360.0), 5)); // TODO
+          new TrapezoidProfile.Constraints(Units.degreesToRadians(360.0), 10)); // TODO
 
   private double thetaErrorAbs = 0.0;
   private Rotation2d goalRotation = new Rotation2d();

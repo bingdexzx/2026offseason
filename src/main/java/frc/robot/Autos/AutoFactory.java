@@ -64,8 +64,7 @@ public class AutoFactory {
         new ParallelDeadlineGroup(new PathPlannerAuto(AutoName2), new intakeCommand(intake)),
         ShootCommands.shootWithTime(shooter, intake, 4),
         new ParallelDeadlineGroup(new PathPlannerAuto(AutoName3), new intakeCommand(intake)),
-        new ParallelDeadlineGroup(new PathPlannerAuto(AutoName4), new intakeCommand(intake)),
-        ShootCommands.shootWithTime(shooter, intake, 4));
+        new ParallelDeadlineGroup(new PathPlannerAuto(AutoName4), new intakeCommand(intake)));
   }
 
   public static Command runMiddlePathInAuto(String AutoName1, Intake intake, Shooter shooter) {
