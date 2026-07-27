@@ -8,86 +8,86 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.0028987626565256,
-        "y": 2.045993536726281
+        "x": 2.8745861913766775,
+        "y": 2.274955644510131
       },
       "isLocked": false,
       "linkedName": "蓝右shooter末位置"
     },
     {
       "anchor": {
-        "x": 3.683,
-        "y": 0.673
+        "x": 3.611,
+        "y": 0.88
       },
       "prevControl": {
-        "x": 2.9446017214366274,
-        "y": 0.9212115674473057
+        "x": 2.4865177247669914,
+        "y": 1.4616318532257284
       },
       "nextControl": {
-        "x": 4.045090041606172,
-        "y": 0.5512839296984975
+        "x": 3.9156583099564948,
+        "y": 0.7224172783124605
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.763,
-        "y": 0.673
+        "x": 5.569,
+        "y": 0.769
       },
       "prevControl": {
-        "x": 4.096202013910823,
-        "y": 0.6470486306900549
+        "x": 4.766213040311,
+        "y": 0.44155214559674794
       },
       "nextControl": {
-        "x": 6.333930803873377,
-        "y": 0.6818891612933289
+        "x": 5.800484129091407,
+        "y": 0.8634197965407301
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.262,
-        "y": 1.125
+        "x": 6.054,
+        "y": 1.662
       },
       "prevControl": {
-        "x": 7.056372417098731,
-        "y": 0.9741945055703143
+        "x": 6.080442409128273,
+        "y": 1.0996213028576802
       },
       "nextControl": {
-        "x": 7.704704090246261,
-        "y": 1.4496753585956759
+        "x": 6.03915843466335,
+        "y": 1.9776512758383178
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.805,
-        "y": 3.321
+        "x": 5.946,
+        "y": 3.308
       },
       "prevControl": {
-        "x": 7.619483721816174,
-        "y": 2.804294367624253
+        "x": 5.983656712336009,
+        "y": 2.657088353141501
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "蓝右intake末位置"
+      "linkedName": "station吸球末右"
     }
   ],
   "rotationTargets": [
     {
       "waypointRelativePos": 1.6,
-      "rotationDegrees": 0.0
+      "rotationDegrees": 180.0
     },
     {
-      "waypointRelativePos": 1.95,
-      "rotationDegrees": 0.0
+      "waypointRelativePos": 1.83,
+      "rotationDegrees": 180.0
     },
     {
       "waypointRelativePos": 2.98,
-      "rotationDegrees": -90.0
+      "rotationDegrees": -85.82
     }
   ],
   "constraintZones": [],
@@ -102,8 +102,8 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.8,
-    "rotation": -90.0
+    "velocity": 0,
+    "rotation": -87.27
   },
   "reversed": false,
   "folder": null,

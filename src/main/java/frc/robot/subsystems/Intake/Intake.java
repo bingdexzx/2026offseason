@@ -12,11 +12,11 @@ public class Intake extends SubsystemBase {
   private boolean isAtGoal = false;
   private final Debouncer atGoalDebouncer = new Debouncer(0.2, DebounceType.kRising);
   private final Debouncer shouldHoldDebouncer = new Debouncer(0.2, DebounceType.kRising);
-  private DoubleSupplier goalSupplier = () -> 0.0;
+  private DoubleSupplier goalSupplier = () -> 0.3;
 
   public Intake(IntakeIO io) {
     this.io = io;
-    io.resetPos(0.387207); // max Pos is about 0.387207 TODO
+    io.resetPos(0.42); // max Pos is about 0.387207 TODO 0.42
   }
 
   @Override

@@ -19,7 +19,7 @@ public class ShootCommands {
             },
             () -> {
               shooter.stop();
-              intake.setPos(() -> 0.0);
+              intake.setPos(() -> 0.3);
             },
             shooter)
         .withTimeout(time);

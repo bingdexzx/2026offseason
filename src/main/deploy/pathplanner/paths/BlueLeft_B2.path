@@ -3,45 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.804871794871794,
-        "y": 4.758532763532765
+        "x": 5.946014234875446,
+        "y": 4.772004744958482
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.786025416666361,
-        "y": 4.482301494486503
+        "x": 7.045733049472872,
+        "y": 6.199609800299124
       },
       "isLocked": false,
-      "linkedName": "蓝左intake末位置"
+      "linkedName": "station吸球末"
     },
     {
       "anchor": {
-        "x": 5.627384105960265,
-        "y": 7.351
+        "x": 5.666,
+        "y": 7.33
       },
       "prevControl": {
-        "x": 6.813748121506349,
-        "y": 6.958008265450031
+        "x": 6.425611947175156,
+        "y": 7.3081407680156945
       },
       "nextControl": {
-        "x": 5.05530231623381,
-        "y": 7.540506266123186
+        "x": 4.0183750062324854,
+        "y": 7.377413441949986
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.449403973509934,
-        "y": 7.222110927152317
+        "x": 3.460640569395019,
+        "y": 7.33
       },
       "prevControl": {
-        "x": 3.9277795121299213,
-        "y": 7.503340996748012
+        "x": 5.460885688068116,
+        "y": 7.3522918286373695
       },
       "nextControl": {
-        "x": 2.780019355796165,
-        "y": 6.828589378853683
+        "x": 2.4873146073734635,
+        "y": 7.319152721658393
       },
       "isLocked": false,
       "linkedName": null
@@ -52,8 +52,8 @@
         "y": 5.533746438746439
       },
       "prevControl": {
-        "x": 2.8695827052518252,
-        "y": 6.180140862267362
+        "x": 2.5339764637929334,
+        "y": 5.786184926205178
       },
       "nextControl": null,
       "isLocked": false,
@@ -62,11 +62,11 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.1041162227602908,
+      "waypointRelativePos": 1.1616341030195363,
       "rotationDegrees": 0.0
     },
     {
-      "waypointRelativePos": 1.5181598062953956,
+      "waypointRelativePos": 1.785079928952039,
       "rotationDegrees": 0.0
     }
   ],
@@ -89,7 +89,7 @@
   "folder": null,
   "idealStartingState": {
     "velocity": 0.0,
-    "rotation": 90.0
+    "rotation": 87.27368900609373
   },
   "useDefaultConstraints": true
 }
