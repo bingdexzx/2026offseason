@@ -36,7 +36,7 @@ public class Shooter extends SubsystemBase {
         speedDebouncer.calculate(
                 Math.abs(goalSpeed - inputs.shooterVelocity)
                     < ShooterConstants.IS_AT_GOAL_SPEED_TOLERANCE)
-            && inputs.shotVelocitySetPoint > 30;
+            && inputs.shotVelocitySetPoint > 40;
     Logger.recordOutput("Shooter/atGoalSpeed", isAtGoalSpeed);
     // 更新是否达到设定位置
     double goalPos = inputs.positionSetPoint;

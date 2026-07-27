@@ -20,7 +20,6 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.Autos.AutoFactory;
 import frc.robot.commands.DriveCommands;
 import frc.robot.commands.DriveToShootPoseCommand;
-import frc.robot.commands.FaceCommand;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.Intake.IntakeIO;
@@ -197,7 +196,7 @@ public class RobotContainer {
 
     // Reset gyro to 0° when B button is pressed
     controller
-        .x()
+        .povUp()
         .onTrue(
             Commands.runOnce(
                     () ->
@@ -207,16 +206,31 @@ public class RobotContainer {
                 .ignoringDisable(true));
 
     controller
+        .x()
+        .onTrue(
+            Commands.runOnce(
+                () -> {
+                  intake.setPos(() -> 0.0);
+                }))
+        .onFalse(
+            Commands.runOnce(
+                () -> {
+                  intake.setPos(() -> 0.34);
+                }));
+
+    controller
         .y()
         .onTrue(
             Commands.runOnce(
                 () -> {
                   intake.intake(5);
+                  intake.setPos(() -> 0.0);
                 }))
         .onFalse(
             Commands.runOnce(
                 () -> {
                   intake.intake(0);
+                  intake.setPos(() -> 0.32);
                 }))
         .whileTrue(
             DriveCommands.joystickDriveWithLim(
@@ -238,7 +252,7 @@ public class RobotContainer {
             Commands.runOnce(
                 () -> {
                   shooter.stop();
-                  intake.setPos(() -> 0.0);
+                  intake.setPos(() -> 0.32);
                 }));
 
     controller
@@ -253,10 +267,8 @@ public class RobotContainer {
             Commands.runOnce(
                 () -> {
                   shooter.stop();
-                  intake.setPos(() -> 0.0);
-                }))
-        .whileTrue(
-            new FaceCommand(drive, () -> -controller.getLeftY(), () -> -controller.getLeftX()));
+                  intake.setPos(() -> 0.32);
+                }));
 
     controller.rightBumper().whileTrue(new DriveToShootPoseCommand(drive));
   }

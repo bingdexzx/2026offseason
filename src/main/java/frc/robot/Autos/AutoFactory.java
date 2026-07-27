@@ -45,10 +45,10 @@ public class AutoFactory {
     return new SequentialCommandGroup(
         new ParallelDeadlineGroup(new PathPlannerAuto(AutoName1), new intakeCommand(intake)),
         new ParallelDeadlineGroup(new PathPlannerAuto(AutoName2), new intakeCommand(intake)),
-        ShootCommands.shootWithTime(shooter, intake, 4),
+        ShootCommands.shootWithTime(shooter, intake, 3.5),
         new ParallelDeadlineGroup(new PathPlannerAuto(AutoName3), new intakeCommand(intake)),
         new ParallelDeadlineGroup(new PathPlannerAuto(AutoName2), new intakeCommand(intake)),
-        ShootCommands.shootWithTime(shooter, intake, 4));
+        ShootCommands.shootWithTime(shooter, intake, 3.5));
   }
 
   public static Command runSidePathInAuto(
@@ -62,9 +62,10 @@ public class AutoFactory {
     return new SequentialCommandGroup(
         new ParallelDeadlineGroup(new PathPlannerAuto(AutoName1), new intakeCommand(intake)),
         new ParallelDeadlineGroup(new PathPlannerAuto(AutoName2), new intakeCommand(intake)),
-        ShootCommands.shootWithTime(shooter, intake, 4),
+        ShootCommands.shootWithTime(shooter, intake, 3.5),
         new ParallelDeadlineGroup(new PathPlannerAuto(AutoName3), new intakeCommand(intake)),
-        new ParallelDeadlineGroup(new PathPlannerAuto(AutoName4), new intakeCommand(intake)));
+        new ParallelDeadlineGroup(new PathPlannerAuto(AutoName4), new intakeCommand(intake)),
+        ShootCommands.shootWithTime(shooter, intake, 3.5));
   }
 
   public static Command runMiddlePathInAuto(String AutoName1, Intake intake, Shooter shooter) {
